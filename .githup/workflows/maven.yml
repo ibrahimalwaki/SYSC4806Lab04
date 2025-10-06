@@ -2,13 +2,15 @@ name: CI - Maven
 
 on:
   push:
-    branches: [ "main" ]   # change to "master" if your default branch is master
+    branches: [ "main" ]     # change if your default branch is different
   pull_request:
     branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout
@@ -24,7 +26,7 @@ jobs:
       - name: Build & test
         run: mvn -B -DskipTests=false clean verify
 
-      - name: Upload artifact
+      - name: Upload artifact (jar)
         if: success()
         uses: actions/upload-artifact@v4
         with:
