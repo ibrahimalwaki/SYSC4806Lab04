@@ -1,0 +1,26 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Address Book</title>
+</head>
+<body>
+<h1>Address Book</h1>
+
+<p th:if="${book == null}">Book not found.</p>
+
+<table th:if="${book != null}" border="1" cellpadding="6">
+    <thead>
+    <tr><th>Name</th><th>Phone</th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="buddy : ${book.buddies}">
+        <td th:text="${buddy.name}">Name</td>
+        <td th:text="${buddy.phoneNumber}">Phone</td>
+    </tr>
+    </tbody>
+</table>
+
+<p><a href="/books">Back to all address books</a></p>
+</body>
+</html>
